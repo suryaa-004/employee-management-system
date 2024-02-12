@@ -1,4 +1,4 @@
-package com.java.employee_management_system.model;
+package com.java.employee_management_system.entity;
 
 import lombok.Data;
 
@@ -7,12 +7,10 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "department",schema = "employee")
-public class Department {
+public class DepartmentEntity {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @OneToMany
-    @JoinColumn(name = "department",nullable = false)
      private  long id;
 
     @Column(name = "dep_id")
@@ -20,6 +18,10 @@ public class Department {
 
     @Column(name = "dep_name")
     private String departmentName;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private EmployeeEntity employeeEntity;
 
 
 }

@@ -1,15 +1,14 @@
-package com.java.employee_management_system.model;
+package com.java.employee_management_system.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-@Data        /*annotation for Getter,Setter,toString() method ,
-               equals() and hashCode() implementations ,
-               Constructor that initializes all final fields*/
+import java.util.List;
 
-
+@Data        //annotation for Getter,Setter,toString() method
 @Entity            //defines that a class can be mapped to a table
 @Table(name = "employees",schema = "employee")
-public class Employee {
+
+public class EmployeeEntity {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -22,9 +21,8 @@ public class Employee {
     @Column(name = "emp_email")
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "department_id",nullable = false)
-    private Department department ;
+    @OneToMany(mappedBy = "employee")
+    private List<DepartmentEntity> departmentEntity;
 
     @Column(name = "Job_role")
     private String role;
@@ -35,4 +33,6 @@ public class Employee {
     @Column(name = "salary")
     private double salary;
 
+    @Column(name ="experience")
+    private  int experience;
 }

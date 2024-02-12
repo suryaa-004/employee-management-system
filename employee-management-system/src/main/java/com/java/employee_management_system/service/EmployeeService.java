@@ -13,8 +13,6 @@ import java.util.regex.Pattern;
 public class EmployeeService {
     @Autowired
     EmployeeRepository employeeRepository;
-    EmployeeEntity employeeEntity;
-
 
 
     public EmployeeEntity createEmployee(EmployeeEntity employeeEntity) {
@@ -26,7 +24,7 @@ public class EmployeeService {
         if (employeeEntity.getEmail() == null || ! isValidEmail(employeeEntity.getEmail())){
             throw new IllegalArgumentException("Employee email is required");
         }
-        if (employeeEntity.getDepartmentEntity() != null && employeeEntity.getDepartmentEntity().isEmpty()){
+        if (employeeEntity.getDepartment() != null && employeeEntity.getDepartment().isEmpty()){
             throw new IllegalArgumentException("Employee department  is required");
         }
         if (employeeEntity.getRole() != null && employeeEntity.getRole().isEmpty()){
@@ -64,7 +62,7 @@ public class EmployeeService {
             existingEmployee.setName(employeeDetails.getName());
         }
 
-        if (employeeDetails.getDepartmentEntity() != null && !employeeDetails.getDepartmentEntity().isEmpty()) {
+        if (employeeDetails.getDepartment() != null && !employeeDetails.getDepartment().isEmpty()) {
             existingEmployee.setName(employeeDetails.getName());
         }
 
@@ -96,4 +94,10 @@ public class EmployeeService {
         return employeeRepository.save(existingEmployee);
     }
 
+    public void deleteEmployee(Long id){
+        Optional<EmployeeEntity> optionalEmployeeEntity = employeeRepository.findById(id);
+        if (optionalEmployeeEntity.isEmpty()){
+            throw new IllegalArgumentException("Employee id no "+id +" not found");
+        }
+    }
 }

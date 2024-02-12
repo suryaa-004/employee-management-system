@@ -21,8 +21,8 @@ public class EmployeeEntity {
     @Column(name = "emp_email")
     private String email;
 
-    @OneToMany(mappedBy = "employee")
-    private List<DepartmentEntity> departmentEntity;
+    @Column(name = "department")
+    private String department;
 
     @Column(name = "Job_role")
     private String role;

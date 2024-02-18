@@ -1,13 +1,12 @@
 package com.java.employee_management_system.entity;
+
 import lombok.Data;
 
-import javax.persistence.*;
-import java.util.List;
+import jakarta.persistence.*;
 
-@Data        //annotation for Getter,Setter,toString() method
-@Entity            //defines that a class can be mapped to a table
-@Table(name = "employees",schema = "employee")
-
+@Data
+@Entity
+@Table(name = "employees")
 public class EmployeeEntity {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)

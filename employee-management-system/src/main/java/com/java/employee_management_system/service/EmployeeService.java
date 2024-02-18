@@ -1,6 +1,5 @@
 package com.java.employee_management_system.service;
 
-import com.java.employee_management_system.controller.EmployeeController;
 import com.java.employee_management_system.entity.EmployeeEntity;
 import com.java.employee_management_system.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,15 +63,15 @@ public class EmployeeService {
         }
 
         if (employeeDetails.getDepartment() != null && !employeeDetails.getDepartment().isEmpty()) {
-            existingEmployee.setName(employeeDetails.getName());
+            existingEmployee.setDepartment(employeeDetails.getDepartment());
         }
 
         if (employeeDetails.getEmail() != null && !employeeDetails.getEmail().isEmpty()) {
-            existingEmployee.setName(employeeDetails.getName());
+            existingEmployee.setEmail(employeeDetails.getEmail());
         }
 
         if (employeeDetails.getRole() != null && !employeeDetails.getRole().isEmpty()) {
-            existingEmployee.setName(employeeDetails.getName());
+            existingEmployee.setRole(employeeDetails.getRole());
         }
         if (employeeDetails.getPhoneNumber() !=0){
             existingEmployee.setPhoneNumber(employeeDetails.getPhoneNumber());

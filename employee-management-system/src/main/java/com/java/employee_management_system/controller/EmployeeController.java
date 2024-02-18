@@ -9,16 +9,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(name = "employee" )
+@RequestMapping(name = "/employee" )
 public class EmployeeController {
 
     @Autowired
      private  EmployeeService employeeService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<EmployeeEntity> createEmployee (@RequestBody EmployeeEntity employeeEntity) {
-        employeeService.createEmployee(employeeEntity);
+
         try {
+            employeeService.createEmployee(employeeEntity);
             ResponseEntity response = new ResponseEntity("Employee created", HttpStatus.CREATED);
             return response;
         } catch (IllegalArgumentException ia) {
@@ -33,10 +34,11 @@ public class EmployeeController {
         }
 
     }
-    @PutMapping
+    @PutMapping("/update/{id}")
     public ResponseEntity<EmployeeEntity> updateEmployee(@PathVariable Long id ,@RequestBody EmployeeEntity employeeEntity){
-         EmployeeEntity updatedEmployee =employeeService.updateEmployee( id,employeeEntity );
+
         try {
+            EmployeeEntity updatedEmployee =employeeService.updateEmployee( id,employeeEntity );
             if(updatedEmployee!=null){
                 ResponseEntity response = new ResponseEntity("Employee updated", HttpStatus.OK);
                 return response;
@@ -55,10 +57,11 @@ public class EmployeeController {
             return response;
         }
     }
-    @DeleteMapping(value = "/delete")
+    @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<EmployeeEntity> deleteEmployee(@PathVariable Long id ){
-         employeeService.deleteEmployee( id );
+
         try {
+            employeeService.deleteEmployee( id );
             ResponseEntity response =new ResponseEntity<>("Employee deleted",HttpStatus.OK);
             return response;
         }
